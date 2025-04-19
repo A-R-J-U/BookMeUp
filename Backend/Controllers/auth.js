@@ -2,7 +2,10 @@ import db from "../db.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { transporter } from "../services/email.js";
-import { verificationEmail, verifiedTemplate } from "../utils/email_template.js";
+import {
+  verificationEmail,
+  verifiedTemplate,
+} from "../utils/email_template.js";
 
 const signup = async (req, res) => {
   try {
@@ -76,13 +79,12 @@ const signin = async (req, res) => {
     );
 
     return res
-      .cookie(
-        "Authorization",
-        "Bearer" + " " + token,
-        { expires: new Date(Date.now() + 8 * 3600000) },
-        { httpOnly: process.env.NODE_ENV === "production" ? true : false },
-        { secure: process.env.NODE_ENV === "production" ? true : false }
-      )
+      .cookie("Authorization", "Bearer" + " " + token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+        maxAge: 24 * 60 * 60 * 1000, // 1 day
+      })
       .json({ message: "User signed in successfully", token: token });
   } catch (e) {
     console.log(e);
