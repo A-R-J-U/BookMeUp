@@ -79,9 +79,12 @@ const signin = async (req, res) => {
       .cookie(
         "Authorization",
         "Bearer" + " " + token,
-        { expires: new Date(Date.now() + 8 * 3600000) },
-        { httpOnly: process.env.NODE_ENV === "production" ? true : false },
-        { secure: process.env.NODE_ENV === "production" ? true : false }
+        {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+        maxAge: 24 * 60 * 60 * 1000, // 1 day
+      }
       )
       .json({ message: "User signed in successfully", token: token });
   } catch (e) {
