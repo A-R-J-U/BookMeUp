@@ -79,17 +79,14 @@ const signin = async (req, res) => {
     );
 
     return res
-      .cookie(
-        "Authorization",
-        "Bearer" + " " + token,
-        {
+      .cookie("Authorization", "Bearer" + " " + token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
         maxAge: 24 * 60 * 60 * 1000, // 1 day
-        path: '/',
-      }
-      )
+        path: "/",
+        domain: "bookmeup-a12k.onrender.com",
+      })
       .json({ message: "User signed in successfully", token: token });
   } catch (e) {
     console.log(e);
@@ -100,7 +97,7 @@ const signin = async (req, res) => {
 const signout = async (req, res) => {
   try {
     return res
-      .clearCookie("Authorization",{ path: '/' })
+      .clearCookie("Authorization", { path: "/" })
       .json({ message: "User signed out successfully" });
   } catch (e) {
     console.log(e);
