@@ -81,8 +81,8 @@ const signin = async (req, res) => {
     return res
       .cookie("Authorization", "Bearer" + " " + token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+        secure: true,
+        sameSite: "none",
         maxAge: 24 * 60 * 60 * 1000, // 1 day
         path: "/",
         domain: "bookmeup-a12k.onrender.com",
