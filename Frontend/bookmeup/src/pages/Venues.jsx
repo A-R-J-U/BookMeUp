@@ -39,14 +39,14 @@ const Venues = () => {
             <input
               type="text"
               placeholder="Search for venues"
-              className="bg-white text-black px-4 py-2 md:w-96 rounded-lg"
+              className="bg-white text-black px-4 py-2 w-40 md:w-96 rounded-lg"
               onChange={(e) => setName(e.target.value)}
             />
             <div className="dropdown dropdown-bottom dropdown-end">
               <div
                 tabIndex={0}
                 role="button"
-                className="btn ml-1 mb-1 px-3 md:px-4 py-6 hover:bg-[#FF8C09] text-md md:text-lg rounded-xl"
+                className="btn ml-1 mb-1 px-2 md:px-4 py-6 hover:bg-[#FF8C09] text-md md:text-lg rounded-xl"
               >
                 Filters
                 <IoIosArrowDown className=" mt-1" />
