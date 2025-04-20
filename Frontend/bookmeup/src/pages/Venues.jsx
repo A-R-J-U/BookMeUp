@@ -5,7 +5,7 @@ import Card from "../components/Card";
 import SliderSkeleton from "../components/SliderSkeleton";
 
 const Venues = () => {
-  const api = import.meta.env.VITE_API_URL;
+ 
 
   const [loading, setLoading] = useState(true);
   const [capacity, setCapacity] = useState(50);
@@ -17,7 +17,7 @@ const Venues = () => {
     const fetchData = async () => {
       try {
         const items = await axios.get(
-          `${api}/venues/search?name=${
+          `api/venues/search?name=${
             name ? name : "null"
           }&size=${size}&capacity=${capacity}`,
           { withCredentials: true }

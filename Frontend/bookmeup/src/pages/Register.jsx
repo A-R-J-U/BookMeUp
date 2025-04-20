@@ -4,7 +4,7 @@ import toast, { Toaster } from "react-hot-toast";
 import logo from "../assets/logo.png";
 
 const Register = () => {
-  const api = import.meta.env.VITE_API_URL;
+  
 
   const [formdata, setformdata] = useState({
     name: "",
@@ -20,7 +20,7 @@ const Register = () => {
   const handlesubmit = (e) => {
     e.preventDefault();
     axios
-      .post(`${api}/users/signup`, formdata, {
+      .post(`api/users/signup`, formdata, {
         withCredentials: true,
       })
       .then((res) => {

@@ -13,14 +13,14 @@ import { FaUserLarge } from "react-icons/fa6";
 
 
 const Navbar = () => {
-  const api = import.meta.env.VITE_API_URL;
+  
   const [toggle, setToggle] = useState(false);
 
   const { setisloggedin, setuser } = useAuth();
 
   const signout = () => {
     axios
-      .get(`${api}/users/signout`, { withCredentials: true })
+      .get(`api/users/signout`, { withCredentials: true })
       .then((res) => {
         toast.success(res.data.message);
         setisloggedin(false);

@@ -11,11 +11,11 @@ const badge = {
 };
 
 const TableRow = (props) => {
-  const api = import.meta.env.VITE_API_URL;
+  
 
   const handleDelete = async () => {
     try {
-      const result = await axios.delete(`${api}/booking/${props.id}`, {
+      const result = await axios.delete(`api/booking/${props.id}`, {
         withCredentials: true,
       });
       toast.success(result?.data.message);

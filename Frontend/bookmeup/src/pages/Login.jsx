@@ -7,7 +7,7 @@ import { CiLogin } from "react-icons/ci";
 
 const Login = () => {
   const { setisloggedin } = useAuth();
-  const API = import.meta.env.VITE_API_URL;
+  
 
   const [formdata, setformdata] = useState({
     name: "",
@@ -23,7 +23,7 @@ const Login = () => {
   const handlesubmit = async (e) => {
     try {
       e.preventDefault();
-      const res = await axios.post(`${API}/users/signin`, formdata, {
+      const res = await axios.post(`api/users/signin`, formdata, {
         withCredentials: true,
       });
 

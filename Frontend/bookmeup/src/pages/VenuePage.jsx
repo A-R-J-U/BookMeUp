@@ -30,16 +30,14 @@ const VenuePage = () => {
   const [venue, setVenue] = useState(null);
   const [blockedDates, setBlockedDates] = useState([]);
 
-  const api = import.meta.env.VITE_API_URL;
-
   useEffect(() => {
     const fetchVenue = async () => {
       try {
-        const res = await axios.get(`${api}/venues/${id}`, {
+        const res = await axios.get(`../api/venues/${id}`, {
           withCredentials: true,
         });
         setVenue(res.data);
-        const bookings = await axios.get(`${api}/booking/${id}`, {
+        const bookings = await axios.get(`../api/booking/${id}`, {
           withCredentials: true,
         });
         const blockedDates = bookings.data.Bookings?.map(
@@ -60,7 +58,7 @@ const VenuePage = () => {
   const handlebooking = async () => {
     try {
       const res = await axios.post(
-        `${api}/booking`,
+        `../api/booking`,
         { venue_id: id, booking_date: selectedDate },
         { withCredentials: true }
       );
@@ -81,7 +79,6 @@ const VenuePage = () => {
       day: "2-digit",
     });
     setSelectedDate(formattedDate);
-    console.log(formattedDate);
   };
 
   return (
@@ -89,7 +86,7 @@ const VenuePage = () => {
       <div className="wrpper bg-gradient-to-l from-[#ff8c0933] to-black border border-1px-solid-white mt-3 p-3 w-full h-auto rounded-3xl flex flex-wrap justify-between items-start">
         <div className="caro h-50  md:w-1/2 md:h-96 lg:h-[500px]">
           <div className="carousel w-full h-full rounded-2xl">
-            {venue?.images.map((image, key) => (
+            {venue?.images?.map((image, key) => (
               <div
                 id={`slide${key}`}
                 key={key}

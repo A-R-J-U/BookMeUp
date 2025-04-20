@@ -30,16 +30,16 @@ const skeleton = () => {
 };
 
 const Profile = () => {
-  const api = import.meta.env.VITE_API_URL;
-  const [loading, setLoading] = useState(true);
+  const [load, setLoading] = useState(true);
 
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
+  console.log(user);
   const [bookings, setBookings] = useState();
 
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const result = await axios.get(`${api}/booking/user`, {
+        const result = await axios.get(`api/booking/user`, {
           withCredentials: true,
         });
         setBookings(result.data.Bookings);
@@ -55,14 +55,19 @@ const Profile = () => {
     <>
       <div className="profile">
         <h1 className="text-3xl md:text-5xl mt-5">Profile</h1>
-        <div className="profile-info mt-2 md:mt-5">
-          <p className="text-xl md:text-3xl">Name: {user?.name}</p>
-          <p className="text-xl md:text-3xl">Email: {user?.email}</p>
-          <p className="text-xl md:text-3xl">Role : {user?.role}</p>
-          <p className="text-s text-gray-300 mt-2">
-            Member since: {user?.created_at.split("T")[0]}
-          </p>
-        </div>
+        {loading || !user ? (
+          <span className="loading loading-spinner text-warning p-6 mt-3"></span>
+        ) : (
+          <div className="profile-info mt-2 md:mt-5">
+            <p className="text-xl md:text-3xl">Name: {user?.name}</p>
+            <p className="text-xl md:text-3xl">Email: {user?.email}</p>
+            <p className="text-xl md:text-3xl">Role : {user?.role}</p>
+            <p className="text-s text-gray-300 mt-2">
+              Member since: {user?.created_at.split("T")[0]}
+            </p>
+          </div>
+        )}
+
         <h1 className="text-3xl md:text-3xl mt-12">Bookings</h1>
         <div className="tbl mt-3 overflow-x-auto md:mx-auto">
           <table className="table">
@@ -76,7 +81,7 @@ const Profile = () => {
               </tr>
             </thead>
             <tbody>
-              {loading
+              {load
                 ? skeleton()
                 : bookings?.map((item, key) => (
                     <TableRow

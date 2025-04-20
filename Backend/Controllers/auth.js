@@ -81,11 +81,10 @@ const signin = async (req, res) => {
     return res
       .cookie("Authorization", "Bearer" + " " + token, {
         httpOnly: true,
-        secure: true,
-        sameSite: "none",
+        secure: process.env.NODE_ENV === "production",
+        sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
         maxAge: 24 * 60 * 60 * 1000, // 1 day
         path: "/",
-        domain: "bookmeup-a12k.onrender.com",
       })
       .json({ message: "User signed in successfully", token: token });
   } catch (e) {

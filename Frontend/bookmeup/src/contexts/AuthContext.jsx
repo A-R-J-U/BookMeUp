@@ -1,5 +1,6 @@
 import { React, createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
+import { set } from "date-fns";
 
 const AuthContext = createContext();
 
@@ -8,25 +9,23 @@ const useAuth = () => {
 };
 
 const AuthProvider = (props) => {
-  const api = import.meta.env.VITE_API_URL;
   const [isloggedin, setisloggedin] = useState(false);
   const [user, setuser] = useState(null);
   const [loading, setloading] = useState(true);
 
   useEffect(() => {
     axios
-      .get(`${api}/users/`, { withCredentials: true })
+      .get(`api/users/`, { withCredentials: true })
       .then((res) => {
         setuser(res.data);
         setisloggedin(true);
-        setloading(false);
       })
       .catch((err) => {
         setuser(null);
-        setloading(false);
         setisloggedin(false);
-      });
-  }, []);
+      })
+      .finally(() => setloading(false));
+  }, [isloggedin]);
 
   return (
     <AuthContext.Provider

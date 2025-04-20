@@ -1,10 +1,13 @@
 {
   "name": "bookmeup",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "Server.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon Server.js"
+    "dev": "nodemon Server.js",
+    "start": "node Server.js",
+    "build":"npm install && npm install --prefix ../Frontend/bookmeup && npm run build --prefix ../Frontend/bookmeup"
+
   },
   "keywords": [],
   "author": "Arjun Kaymala",

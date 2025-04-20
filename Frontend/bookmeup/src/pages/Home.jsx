@@ -7,7 +7,6 @@ import SliderSkeleton from "../components/SliderSkeleton.jsx";
 import axios from "axios";
 
 const Home = () => {
-  const api = import.meta.env.VITE_API_URL;
   const [loading, setLoading] = useState(true);
   const [largeVenues, setLargeVenues] = useState([]);
   const [popularVenues, setPopularVenues] = useState([]);
@@ -16,10 +15,10 @@ const Home = () => {
     const fetchVenues = async () => {
       try {
         const [resLarge, resPopular] = await Promise.all([
-          axios.get(`${api}/venues/search?size=large&capacity=50&name=null`, {
+          axios.get(`api/venues/search?size=large&capacity=50&name=null`, {
             withCredentials: true,
           }),
-          axios.get(`${api}/venues/popular`, {
+          axios.get(`api/venues/popular`, {
             withCredentials: true,
           }),
         ]);

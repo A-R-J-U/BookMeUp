@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import path from "path";
 import userRouter from "./Routers/user_router.js";
 import bookingRouter from "./Routers/Booking_router.js";
 import venueRouter from "./Routers/Venue_router.js";
@@ -11,6 +12,7 @@ import axios from "axios";
 dotenv.config();
 
 const app = express();
+const __dirname = path.resolve();
 
 //MIDDLEWARE
 app.use(
@@ -24,13 +26,20 @@ app.use(express.json());
 app.use(cookieParser());
 
 //Routing
-app.use("/users", userRouter);
-app.use("/booking", bookingRouter);
-app.use("/venues", venueRouter);
+app.use("/api/users", userRouter);
+app.use("/api/booking", bookingRouter);
+app.use("/api/venues", venueRouter);
 
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.status(200).json({ message: "BookMeUp Server Running" });
 });
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../Frontend/bookmeup/dist")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../Frontend/bookmeup/dist/index.html"));
+  });
+}
 
 // Keep the server alive
 cron.schedule("*/13 * * * *", async () => {
