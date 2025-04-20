@@ -84,21 +84,18 @@ The platform ensures that every booking goes through a structured **approval pro
         EMAIL_NAME=...
         EMAIL_PASSWORD =...
 ```
-*Frontend*:
-```bash
-   VITE_API_URL=...
-```
+
 3.**install dependencies**
 
-*in root folder of Frontend and Backend*
+*in root folder of Backend*
 ```bash
-   npm install
+   npm run build
 ```
 4.**Start**
 
 *Run both the frontend and Backend using the following command*
 ```bash
-   npm run dev 
+   npm start
 ```
 # 📷 Preview
 ![Screenshot 2025-04-20 040139](https://github.com/user-attachments/assets/b7add441-95e9-4811-8873-7a3e173cba93)
