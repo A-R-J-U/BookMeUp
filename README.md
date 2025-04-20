@@ -86,11 +86,11 @@ The platform ensures that every booking goes through a structured **approval pro
 ```
 *Frontend*:
 ```bash
-   VITE_API_URL=
+   VITE_API_URL=...
 ```
 3.**install dependencies**
 
-*in root folder of frontend and Backend*
+*in root folder of Frontend and Backend*
 ```bash
    npm install
 ```
