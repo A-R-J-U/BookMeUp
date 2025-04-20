@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "nodemon Server.js",
     "start": "node Server.js",
-    "build":"npm install && npm install --prefix ../Frontend/bookmeup && npm run build --prefix ../Frontend/bookmeup"
-
+    "build": "npm install && npm install --prefix ../Frontend/bookmeup --include=dev && npm run build --prefix ../Frontend/bookmeup"
   },
   "keywords": [],
   "author": "Arjun Kaymala",
@@ -16,6 +15,7 @@
   "dependencies": {
     "axios": "^1.8.4",
     "bcrypt": "^5.1.1",
+    "bookmeup": "file:",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
