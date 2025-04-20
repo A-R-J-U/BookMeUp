@@ -53,7 +53,7 @@ const Venues = () => {
               </div>
               <div
                 tabIndex={0}
-                className="dropdown-content menu bg-base-100 rounded-box z-1 w-77 md:w-96 p-5 shadow-sm"
+                className="dropdown-content menu bg-base-100 rounded-box z-1 w-65 md:w-96 p-5 shadow-sm"
               >
                 <div className="wrapper flex justify-between">
                   <div className="size">
@@ -68,7 +68,7 @@ const Venues = () => {
                         setSize(e.target.value);
                       }}
                     />
-                    <label htmlFor="small" className="text-lg p-2">
+                    <label htmlFor="small" className="text-md md:text-lg p-2">
                       Small
                     </label>
                     <br />
@@ -81,7 +81,7 @@ const Venues = () => {
                       className="scale-150 accent-[#FF8C09]"
                       onChange={(e) => setSize(e.target.value)}
                     />
-                    <label htmlFor="medium" className="text-lg p-2">
+                    <label htmlFor="medium" className="text-md md:text-lg p-2">
                       Medium
                     </label>
                     <br />
@@ -96,7 +96,7 @@ const Venues = () => {
                         setSize(e.target.value);
                       }}
                     />
-                    <label htmlFor="large" className="text-lg p-2">
+                    <label htmlFor="large" className="text-md md:text-lg p-2">
                       Large
                     </label>
                     <br />
