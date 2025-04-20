@@ -62,7 +62,7 @@ The platform ensures that every booking goes through a structured **approval pro
 
 2.**Specify .env files**
 
-*Frontend*:
+*Backend*:
 
 ```bash
     PORT = ...
@@ -84,7 +84,7 @@ The platform ensures that every booking goes through a structured **approval pro
         EMAIL_NAME=...
         EMAIL_PASSWORD =...
 ```
-*Backend*:
+*Frontend*:
 ```bash
    VITE_API_URL=
 ```
