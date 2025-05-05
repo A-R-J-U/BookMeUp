@@ -5,8 +5,6 @@ import Card from "../components/Card";
 import SliderSkeleton from "../components/SliderSkeleton";
 
 const Venues = () => {
- 
-
   const [loading, setLoading] = useState(true);
   const [capacity, setCapacity] = useState(50);
   const [size, setSize] = useState("null");

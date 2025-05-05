@@ -3,8 +3,18 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import logo from "../assets/logo.png";
 
+const ValidateEmail = () => {
+  return (
+    <>
+      <h1 className="text-2xl text-center py-6">
+        Please check your email Inbox/Spam to validate your email.{" "}
+      </h1>
+    </>
+  );
+};
+
 const Register = () => {
-  
+  const [Toggle, setToggle] = useState(true);
 
   const [formdata, setformdata] = useState({
     name: "",
@@ -25,6 +35,7 @@ const Register = () => {
       })
       .then((res) => {
         toast.success(res.data.message);
+        setToggle(false);
       })
       .catch((err) => {
         console.log(err);
@@ -38,51 +49,57 @@ const Register = () => {
         <div className="logo">
           <img src={logo} alt="LOGO" className="w-md" />
         </div>
-        <div className="flex flex-col items-center mt-[-60px] w-[100%]">
-          <h1 className="text-white text-3xl font-bold text-center p-[20px]">
-            REGISTER
-          </h1>
-          <form onSubmit={handlesubmit} className=" regfrm flex flex-col">
-            <input
-              type="text"
-              placeholder="NAME"
-              name="name"
-              value={formdata.name}
-              onChange={handlechange}
-              className="bg-white text-black rounded-md p-[10px] mb-4 xl:w-sm"
-              required
-            />
-            <input
-              type="text"
-              placeholder="EMAIL"
-              name="email"
-              value={formdata.email}
-              onChange={handlechange}
-              className="bg-white text-black rounded-md p-[10px] mb-4 "
-              required
-            />
-            <input
-              type="password"
-              placeholder="PASSWORD"
-              name="password"
-              value={formdata.password}
-              onChange={handlechange}
-              className="bg-white text-black rounded-md p-[10px] mb-4"
-              required
-            />
-            <button
-              type="submit"
-              className="bg-[#FF8C09] px-1 py-3 w-3xs mx-auto mt-4 mb-2 rounded-md text-center text-2xl font-semibold hover:scale-110 cursor-pointer transition ease-in-out duration-300 "
-            >
+
+        {Toggle ? (
+          <div className="flex flex-col items-center mt-[-60px] w-[100%]">
+            <h1 className="text-white text-3xl font-bold text-center p-[20px]">
               REGISTER
-            </button>
-          </form>
-        </div>
+            </h1>
+            <form onSubmit={handlesubmit} className=" regfrm flex flex-col">
+              <input
+                type="text"
+                placeholder="NAME"
+                name="name"
+                value={formdata.name}
+                onChange={handlechange}
+                className="bg-white text-black rounded-md p-[10px] mb-4 xl:w-sm"
+                required
+              />
+              <input
+                type="text"
+                placeholder="EMAIL"
+                name="email"
+                value={formdata.email}
+                onChange={handlechange}
+                className="bg-white text-black rounded-md p-[10px] mb-4 "
+                required
+              />
+              <input
+                type="password"
+                placeholder="PASSWORD"
+                name="password"
+                value={formdata.password}
+                onChange={handlechange}
+                className="bg-white text-black rounded-md p-[10px] mb-4"
+                required
+              />
+              <button
+                type="submit"
+                className="bg-[#FF8C09] px-1 py-3 w-3xs mx-auto mt-4 mb-2 rounded-md text-center text-2xl font-semibold hover:scale-110 cursor-pointer transition ease-in-out duration-300 "
+              >
+                REGISTER
+              </button>
+            </form>
+          </div>
+        ) : (
+          <ValidateEmail />
+        )}
+
         <a
           href="/login"
           className="cursor-pointer text-blue-500 hover:underline"
         >
-          Already have an account?
+          {Toggle ? `Already have an account?` : `Login`}
         </a>
       </div>
     </div>
