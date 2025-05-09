@@ -32,7 +32,7 @@ const signup = async (req, res) => {
         { expiresIn: "5h" }
       );
 
-      const url = `${process.env.BASE_URL}/users/verify/${emailToken}`;
+      const url = `api/users/verify/${emailToken}`;
 
       transporter.sendMail({
         from: '"BookMeUp" <bookmeup76@gmail.com>',
